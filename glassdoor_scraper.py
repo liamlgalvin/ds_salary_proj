@@ -123,27 +123,27 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
                     #    <label>Headquarters</label>
                     #    <span class="value">San Francisco, CA</span>
                     #</div>
-                    headquarters = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Headquarters"]//following-sibling::*').text
+                    headquarters = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Sede"]//following-sibling::*').text
                 except NoSuchElementException:
                     headquarters = -1
 
                 try:
-                    size = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Size"]//following-sibling::*').text
+                    size = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Tamaño"]//following-sibling::*').text
                 except NoSuchElementException:
                     size = -1
 
                 try:
-                    founded = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Founded"]//following-sibling::*').text
+                    founded = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Fundada en"]//following-sibling::*').text
                 except NoSuchElementException:
                     founded = -1
 
                 try:
-                    type_of_ownership = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Type"]//following-sibling::*').text
+                    type_of_ownership = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Tipo"]//following-sibling::*').text
                 except NoSuchElementException:
                     type_of_ownership = -1
 
                 try:
-                    industry = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Industry"]//following-sibling::*').text
+                    industry = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Ámbito"]//following-sibling::*').text
                 except NoSuchElementException:
                     industry = -1
 
@@ -153,7 +153,7 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
                     sector = -1
 
                 try:
-                    revenue = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Revenue"]//following-sibling::*').text
+                    revenue = driver.find_element_by_xpath('.//div[@class="infoEntity"]//label[text()="Ingresos"]//following-sibling::*').text
                 except NoSuchElementException:
                     revenue = -1
 
