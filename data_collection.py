@@ -3,5 +3,5 @@ import pandas as pd
 
 path = "C:/Users/Liam Galvin/Documents/University/Coding/ds_salary_proj/chromedrive"
 
-df = gs.get_jobs("data scientist", 10, False, path, 15)
-df
+df = gs.get_jobs("data scientist", 1000, False, path, 15)
+df.to_csv('glassdoor_jobs.csv', index = False)

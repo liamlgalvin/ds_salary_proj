@@ -32,32 +32,38 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
     driver.get(url)
     jobs = []
 
+
+
+    #Let the page load. Change this number based on your internet speed.
+    #Or, wait until the webpage is loaded, instead of hardcoding it.
+    time.sleep(slp_time)
+
+    #Test for the "Sign Up" prompt and get rid of it.
+    try:
+        driver.find_element_by_class_name("selected").click()
+    except ElementClickInterceptedException:
+        pass
+
+    time.sleep(.1)
+
+    try:
+        #driver.find_element_by_class_name("ModalStyle__xBtn___29PT9").click()  #clicking to the X.
+        driver.find_element_by_css_selector('#JAModal > div > div.modal_main.jaCreateAccountModalWrapper > span > svg').click()
+    except: #NoSuchElementException
+        print("problem closing pop-up")
+        pass
+    
+    #accept cookies
+    time.sleep(1)
+    try:
+        driver.find_element_by_xpath('//*[@id="onetrust-accept-btn-handler"]').click()
+    except NoSuchElementException:
+        pass
+
+
+
     while len(jobs) < num_jobs:  #If true, should be still looking for new jobs.
 
-        #Let the page load. Change this number based on your internet speed.
-        #Or, wait until the webpage is loaded, instead of hardcoding it.
-        time.sleep(slp_time)
-
-        #Test for the "Sign Up" prompt and get rid of it.
-        try:
-            driver.find_element_by_class_name("selected").click()
-        except ElementClickInterceptedException:
-            pass
-
-        time.sleep(.1)
-
-        try:
-            driver.find_element_by_class_name("ModalStyle__xBtn___29PT9").click()  #clicking to the X.
-        except NoSuchElementException:
-            pass
-        
-        #accept cookies
-        time.sleep(1)
-        try:
-            driver.find_element_by_xpath('//*[@id="onetrust-accept-btn-handler"]').click()
-        except NoSuchElementException:
-            pass
-        
         #Going through each job in this page
         job_buttons = driver.find_elements_by_class_name("jl")  #jl for Job Listing. These are the buttons we're going to click.
         time.sleep(1) 
@@ -197,7 +203,8 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
         #Clicking on the "next page" button
         
         try:
-            driver.find_element_by_css_selector('li.jl:nth-child(1)').click()
+            #driver.find_element_by_css_selector('li.jl:nth-child(1)').click()
+            driver.find_element_by_css_selector('#FooterPageNav > div > ul > li.next > a')
         except NoSuchElementException:
             print("Scraping terminated before reaching target number of jobs. Needed {}, got {}.".format(num_jobs, len(jobs)))
             break
